@@ -91,9 +91,42 @@ public class pdbank {
                     case 5:
                         //fazer saques
 
+                        try{
+                            System.out.println(Mensagens.msgDigiteNumeroConta());
+                            String campoNumeroConta = sc.nextLine();
+                            int numeroConta = Integer.parseInt(campoNumeroConta);
+
+                            System.out.println(Mensagens.msgValorSaque());
+                            String campoValor = sc.nextLine();
+                            double valorSaque = Double.parseDouble(campoValor);
+
+                            contaBancaria = contaBancariaServices.fazerSaque(numeroConta, valorSaque);
+
+                            if(contaBancaria != null){
+                                System.out.println(Mensagens.msgSucessoSaque());
+                            } else {
+                                System.out.println(Mensagens.msgSemSaldo());
+                            }
+
+                        }catch (NumberFormatException e){
+                            System.out.println(Mensagens.msgValorInvalido());
+                        }
+
                         break;
                     case 6:
-                        //encerrar conta
+                        try{
+                            System.out.println(Mensagens.msgDigiteNumeroConta());
+                            String campoNumeroConta = sc.nextLine();
+                            int numeroConta = Integer.parseInt(campoNumeroConta);
+
+                            if(contaBancariaServices.encerrarConta(numeroConta)){
+                                System.out.println(Mensagens.msgSucessoEncerrarConta());
+                            }else {
+                                System.out.println(Mensagens.msgFalhaEncerrarConta());
+                            }
+                        }catch (NumberFormatException e){
+                            System.out.println(Mensagens.msgOpcaoInvalida());
+                        }
                         break;
                     case 7:
                         continuar = false;

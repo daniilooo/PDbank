@@ -49,12 +49,23 @@ public class ContaBancariaServices {
     public ContaBancaria fazerSaque(int numeroConta, double valorSaque){
         ContaBancaria contaBancaria = this.buscarConta(numeroConta);
 
-        if(contaBancaria != null && valorSaque > 0.0 && contaBancaria.getSaldo() > valorSaque){
+        if(contaBancaria != null && valorSaque > 0.0 && contaBancaria.getSaldo() >= valorSaque){
             contaBancaria.setSaldo(contaBancaria.getSaldo() - valorSaque);
             return contaBancaria;
         }
-
         return null;
+    }
+
+    public boolean encerrarConta(int numeroConta){
+
+        ContaBancaria contaBancaria = this.buscarConta(numeroConta);
+
+        if(contaBancaria.getSaldo() == 0.0){
+            listContasBancarias.remove(contaBancaria);
+            return true;
+        }
+
+        return false;
 
     }
 

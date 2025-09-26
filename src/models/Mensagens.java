@@ -127,4 +127,16 @@ public class Mensagens {
         return msgSemSaldo;
     }
 
+    public static String msgSucessoEncerrarConta(){
+        String msgEncerrarConta = String.format("""
+                Conta encerrada com sucesso.""");
+        return msgEncerrarConta;
+    }
+
+    public static String msgFalhaEncerrarConta(){
+        String msgEncerrarConta = String.format("""
+                Antes de encerrar uma conta o saldo dela deve ser zerado através de operações de saque ou depósito""");
+        return msgEncerrarConta;
+    }
+
 }
